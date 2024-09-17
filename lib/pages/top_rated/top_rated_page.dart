@@ -12,7 +12,7 @@ class TopRatedPage extends StatefulWidget {
 
 class _TopRatedPageState extends State<TopRatedPage> {
   ApiServices apiServices = ApiServices();
-  late Future<Result> moviesFuture;
+  late Future<MovieResult> moviesFuture;
 
   @override
   void initState() {

@@ -9,46 +9,46 @@ const baseUrl = 'https://api.themoviedb.org/3/';
 const key = '?api_key=$apiKey';
 
 class ApiServices {
-  Future<Result> getTopRatedMovies() async {
+  Future<MovieResult> getTopRatedMovies() async {
     var endPoint = 'movie/top_rated';
     final url = '$baseUrl$endPoint$key';
 
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      return Result.fromJson(jsonDecode(response.body));
+      return MovieResult.fromJson(jsonDecode(response.body));
     }
     throw Exception('failed to load now playing movies');
   }
 
-  Future<Result> getNowPlayingMovies() async {
+  Future<MovieResult> getNowPlayingMovies() async {
     var endPoint = 'movie/now_playing';
     final url = '$baseUrl$endPoint$key';
 
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      return Result.fromJson(jsonDecode(response.body));
+      return MovieResult.fromJson(jsonDecode(response.body));
     }
     throw Exception('failed to load now playing movies');
   }
 
-  Future<Result> getUpcomingMovies() async {
+  Future<MovieResult> getUpcomingMovies() async {
     var endPoint = 'movie/upcoming';
     final url = '$baseUrl$endPoint$key';
 
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      return Result.fromJson(jsonDecode(response.body));
+      return MovieResult.fromJson(jsonDecode(response.body));
     }
     throw Exception('failed to load upcoming movies');
   }
 
-  Future<Result> getPopularMovies() async {
+  Future<MovieResult> getPopularMovies() async {
     const endPoint = 'movie/popular';
     const url = '$baseUrl$endPoint$key';
 
     final response = await http.get(Uri.parse(url), headers: {});
     if (response.statusCode == 200) {
-      return Result.fromJson(jsonDecode(response.body));
+      return MovieResult.fromJson(jsonDecode(response.body));
     }
     throw Exception('failed to load now playing movies');
   }
@@ -64,13 +64,13 @@ class ApiServices {
     throw Exception('failed to load  movie details');
   }
 
-  Future<Result> getMovieRecommendations(int movieId) async {
+  Future<MovieResult> getMovieRecommendations(int movieId) async {
     final endPoint = 'movie/$movieId/recommendations';
     final url = '$baseUrl$endPoint$key';
 
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      return Result.fromJson(jsonDecode(response.body));
+      return MovieResult.fromJson(jsonDecode(response.body));
     }
     throw Exception('failed to load  movie details');
   }

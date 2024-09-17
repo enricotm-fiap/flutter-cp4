@@ -13,9 +13,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ApiServices apiServices = ApiServices();
-  late Future<Result> popular;
-  late Future<Result> nowPlaying;
-  late Future<Result> upcoming;
+  late Future<MovieResult> popular;
+  late Future<MovieResult> nowPlaying;
+  late Future<MovieResult> upcoming;
 
   @override
   void initState() {

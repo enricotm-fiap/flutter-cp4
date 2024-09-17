@@ -17,7 +17,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   ApiServices apiServices = ApiServices();
 
   late Future<MovieDetailModel> movieDetail;
-  late Future<Result> movieRecommendationModel;
+  late Future<MovieResult> movieRecommendationModel;
 
   @override
   void initState() {
