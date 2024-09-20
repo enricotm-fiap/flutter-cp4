@@ -4,6 +4,7 @@ import 'package:movie_app/common/utils.dart';
 import 'package:movie_app/models/movie_detail_model.dart';
 import 'package:movie_app/models/movie_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:movie_app/models/movie_review_model.dart';
 
 const baseUrl = 'https://api.themoviedb.org/3/';
 const key = '?api_key=$apiKey';
@@ -71,6 +72,17 @@ class ApiServices {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       return MovieResult.fromJson(jsonDecode(response.body));
+    }
+    throw Exception('failed to load  movie details');
+  }
+
+  Future<MovieReviewModel> getMovieReviews(int movieId) async {
+    final endPoint = 'movie/$movieId/reviews';
+    final url = '$baseUrl$endPoint$key';
+
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      return MovieReviewModel.fromJson(jsonDecode(response.body));
     }
     throw Exception('failed to load  movie details');
   }

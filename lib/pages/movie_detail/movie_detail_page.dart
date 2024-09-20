@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/common/utils.dart';
 import 'package:movie_app/models/movie_detail_model.dart';
 import 'package:movie_app/models/movie_model.dart';
+import 'package:movie_app/models/movie_review_model.dart';
+import 'package:movie_app/pages/movie_detail/widgets/movie_detail_review.dart';
 import 'package:movie_app/services/api_services.dart';
 
 class MovieDetailPage extends StatefulWidget {
@@ -18,6 +20,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   late Future<MovieDetailModel> movieDetail;
   late Future<MovieResult> movieRecommendationModel;
+  late Future<MovieReviewModel> movieReviewsModel;
 
   @override
   void initState() {
@@ -27,6 +30,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   fetchInitialData() {
     movieDetail = apiServices.getMovieDetail(widget.movieId);
+    movieReviewsModel = apiServices.getMovieReviews(widget.movieId);
     movieRecommendationModel =
         apiServices.getMovieRecommendations(widget.movieId);
     setState(() {});
@@ -136,6 +140,36 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
+                        ),
+                        FutureBuilder(
+                          future: movieReviewsModel,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            if (snapshot.hasError) {
+                              return Center(
+                                child: Text('Error: ${snapshot.error}'),
+                              );
+                            }
+                            if (snapshot.hasData) {
+                              final reviews = snapshot.data!.results;
+                              return ListView.builder(
+                                itemCount: 1,
+                                itemBuilder: (context, index) {
+                                  return MovieDetailReview(
+                                      review: reviews![index]);
+                                },
+                              );
+                            }
+
+                            return const Center(
+                              child: Text('No data found'),
+                            );
+                          },
                         ),
                       ],
                     ),
