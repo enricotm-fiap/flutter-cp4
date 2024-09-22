@@ -141,6 +141,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
                         ),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         FutureBuilder(
                           future: movieReviewsModel,
                           builder: (context, snapshot) {
@@ -157,13 +160,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             }
                             if (snapshot.hasData) {
                               final reviews = snapshot.data!.results;
-                              return ListView.builder(
-                                itemCount: 1,
-                                itemBuilder: (context, index) {
-                                  return MovieDetailReview(
-                                      review: reviews![index]);
-                                },
-                              );
+                              return MovieDetailReview(reviews: reviews);
                             }
 
                             return const Center(
