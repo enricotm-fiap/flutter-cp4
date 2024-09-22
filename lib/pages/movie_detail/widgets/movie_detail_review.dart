@@ -38,6 +38,7 @@ class MovieDetailReview extends StatelessWidget {
                   reviews!.length == 1
                       ? SizedBox()
                       : Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             SizedBox(
                               height: 20,
