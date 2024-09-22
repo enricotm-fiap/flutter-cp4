@@ -1,16 +1,10 @@
-# movie_app
+### Integrantes
 
-A new Flutter project.
+Eduardo Pereira Lima - 96048  
+Enrico Thomas Mazelli - 94371  
+Luigi Macedo Silva - 93989  
 
-## Getting Started
+### Link Youtube
+https://www.youtube.com/watch?v=oixDhDZuHHQ
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
