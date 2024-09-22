@@ -22,7 +22,7 @@ class MovieDetailReview extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        reviews == null
+        reviews!.isEmpty
             ? const Text("No reviews")
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -35,17 +35,23 @@ class MovieDetailReview extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text((reviews![1].content).toString()),
-                  Text(
-                    "- ${(reviews![1].author).toString()}",
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  reviews!.length == 1
+                      ? SizedBox()
+                      : Column(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text((reviews![1].content).toString()),
+                            Text(
+                              "- ${(reviews![1].author).toString()}",
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        )
                 ],
               ),
       ],
